@@ -6,4 +6,4 @@ const MyComponent: FC<MyComponentPropType> = ({text})=> {
     return <div>{text}</div>
 }
 export default MyComponent;
-fdg
+
