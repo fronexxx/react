@@ -1,15 +1,15 @@
 import './App.css'
-import MyComponent from "./componens/MyComponent.tsx";
+import {products} from "./data/productsList.ts";
+import MyProduct from "./componens/my-product/MyProduct.tsx";
 
 function App() {
 
     return (
         <>
-            <MyComponent text={'Hello 1'}/>
-            <MyComponent text={'Hello 2'}/>
-            <MyComponent text={'Hello 3'}/>
-            <MyComponent text={'Hello okten'}/>
-            {/*{MyComponent({text: 'Hello 2'})}*/}
+            {
+                products.map((product, index) => <MyProduct key={index} product={product}/>
+                )
+            }
         </>
     );
 }
