@@ -8,7 +8,7 @@ type MyComponentPropType = {
 
 const MyComponent: FC<MyComponentPropType> = ({title, children}) => {
     return (
-        <div className='underline'>
+        <div className='text-3xl font-bold underline'>
             <h2>{title}</h2>
             <p>{children}</p>
         </div>

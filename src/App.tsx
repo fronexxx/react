@@ -5,6 +5,7 @@ function App() {
 
     return (
         <>
+
             <MyComponent title={'Hello 1'}>
                 Lorem ipsum dolor sit.
             </MyComponent>
