@@ -13,4 +13,3 @@ const MyComponent: FC<MyComponentPropType> = ({text}) => {
     );
 };
 export default MyComponent;
-
