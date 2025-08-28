@@ -1,17 +1,25 @@
-import './App.css'
-import MyComponent from "./components/MyComponent.tsx";
+import {useState} from "react";
 
-function App() {
+const App = () => {
 
+    // eslint-disable-next-line prefer-const
+    let [counter, setCounter] = useState<number>(0);
+    console.log('mount');
     return (
-        <>
-            <MyComponent text={'Hello 1'}/>
-            <MyComponent text={'Hello 2'}/>
-            <MyComponent text={'Hello 3'}/>
-            <MyComponent text={'Hello okten'}/>
-            {/*{MyComponent({text: 'Hello 2'})}*/}
-        </>
+        <div>
+            <h2>{counter}</h2>
+            <button onClick={() => {
+                setCounter(++counter);
+            }}>increment
+            </button>
+            <button onClick={() => {
+                setCounter(prevState => {
+                    return --prevState;
+                });
+            }}>decrement
+            </button>
+        </div>
     );
-}
+};
 
-export default App
+export default App;
