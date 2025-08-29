@@ -4,13 +4,17 @@ import type {FC} from "react";
 
 type UserPropsType = {
     item: IUser;
-}
-const UserComponent: FC<UserPropsType> = ({item}) => {
+    foo: (item: IUser) => void
+};
+
+const UserComponent: FC<UserPropsType> = ({item, foo}) => {
     return (
-        <div>
+        <>
             <h3>{item.name}</h3>
-            <p>{item.email}</p>
-        </div>
+            <button onClick={() => {
+                 foo(item)
+            }}>details</button>
+        </>
     );
 };
 
