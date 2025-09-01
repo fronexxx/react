@@ -29,7 +29,7 @@ interface IDimensions {
   depth: number;
 }
 
-interface IReviews {
+export interface IReviews {
   rating: number;
   comment: string;
   date: string;

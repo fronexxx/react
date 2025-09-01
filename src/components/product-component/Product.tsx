@@ -1,4 +1,4 @@
-import type {IProduct} from "../../models/IProduct.ts";
+import type {IProduct, IReviews} from "../../models/IProduct.ts";
 import type {FC} from "react";
 import './Product.css';
 
@@ -43,9 +43,10 @@ export const Product: FC<ProductProps> = ({
                 <p>Rating: {rating}</p>
                 <p>Stock: {stock}</p>
                 <ul>
-                    Tags:
-                    <li>- {tags[0]}</li>
-                    <li>- {tags[1]}</li>
+                    <p>Tags:</p>
+                    {tags.map((tag: string, index: number) => (
+                        <li key={index}>- {tag}</li>
+                    ))}
                 </ul>
             </div>
             <div className='flex flex-col gap-3'>
@@ -62,32 +63,20 @@ export const Product: FC<ProductProps> = ({
                 <p>Shipping Information: {shippingInformation}</p>
                 <p>Availability Status: {availabilityStatus}</p>
             </div>
-            <p className='font-bold'>Reviews:</p>
-            <div className='flex gap-3 justify-between'>
-                <ul>
-                    <p className='font-sans'>Review 1</p>
-                    <li>- Rating: {reviews[0].rating}</li>
-                    <li>- Reviewer Name: {reviews[0].reviewerName}</li>
-                    <li>- Reviewer Email: {reviews[0].reviewerEmail}</li>
-                    <li>- Date: {reviews[0].date}</li>
-                    <li>- Comment: {reviews[0].comment}</li>
-                </ul>
-                <ul>
-                    <p className='font-sans'>Review 2</p>
-                    <li>- Rating: {reviews[1].rating}</li>
-                    <li>- Reviewer Name: {reviews[1].reviewerName}</li>
-                    <li>- Reviewer Email: {reviews[1].reviewerEmail}</li>
-                    <li>- Date: {reviews[1].date}</li>
-                    <li>- Comment: {reviews[1].comment}</li>
-                </ul>
-                <ul>
-                    <p className='font-sans'>Review 3</p>
-                    <li>- Rating: {reviews[2].rating}</li>
-                    <li>- Reviewer Name: {reviews[2].reviewerName}</li>
-                    <li>- Reviewer Email: {reviews[2].reviewerEmail}</li>
-                    <li>- Date: {reviews[2].date}</li>
-                    <li>- Comment: {reviews[2].comment}</li>
-                </ul>
+            <div className='flex flex-col'>
+                <p className='font-bold ml-150 mb-10'>Reviews:</p>
+                <div className='flex gap-3 justify-between'>
+                    {reviews.map((review: IReviews, index: number) => (
+                        <ul key={index}>
+                            <p className='font-sans'>Review {index + 1}</p>
+                            <li>- Rating: {review.rating}</li>
+                            <li>- Reviewer Name: {review.reviewerName}</li>
+                            <li>- Reviewer Email: {review.reviewerEmail}</li>
+                            <li>- Date: {review.date}</li>
+                            <li>- Comment: {review.comment}</li>
+                        </ul>
+                    ))}
+                </div>
             </div>
             <div className='flex flex-col gap-3'>
                 <p>Return Policy: {returnPolicy}</p>
@@ -101,7 +90,9 @@ export const Product: FC<ProductProps> = ({
                 </ul>
 
                 <div className='flex justify-around'>
-                    <img src={images[0]} alt="img"/>
+                    {images.map((img, index) => (
+                        <img key={index} src={img} alt="img"/>
+                    ))}
                     <img src={thumbnail} alt="thumb"/>
                 </div>
             </div>
