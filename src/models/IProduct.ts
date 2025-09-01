@@ -11,25 +11,25 @@ export interface IProduct {
     brand: string;
     sku: string;
     weight: number;
-    dimensions: Dimensions;
+    dimensions: IDimensions;
     warrantyInformation: string;
     shippingInformation: string;
     availabilityStatus: string;
-    reviews: Reviews[];
+    reviews: IReviews[];
     returnPolicy: string;
     minimumOrderQuantity: number;
-    meta: Meta;
+    meta: IMeta;
     images: string[];
     thumbnail: string;
 }
 
-interface Dimensions {
+interface IDimensions {
   width: number;
   height: number;
   depth: number;
 }
 
-interface Reviews {
+interface IReviews {
   rating: number;
   comment: string;
   date: string;
@@ -37,7 +37,7 @@ interface Reviews {
   reviewerEmail: string;
 }
 
-interface Meta {
+interface IMeta {
   createdAt: string;
   updatedAt: string;
   barcode: string;

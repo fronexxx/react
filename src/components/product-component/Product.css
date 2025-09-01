@@ -8,3 +8,7 @@ p{
     display: flex;
     gap: 14px;
 }
+img{
+    width: 200px;
+}
+
