@@ -1,0 +1,10 @@
+body{
+    background-color: dimgrey;
+}
+span{
+    font-weight: bold;
+}
+p{
+    display: flex;
+    gap: 14px;
+}
