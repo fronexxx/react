@@ -8,8 +8,8 @@ const Menu = () => {
                 <li><Link to={'/a'}>a page</Link></li>
                 <li><Link to={'/b'}>b page</Link></li>
                 <hr/>
-                <Outlet/>
             </ul>
+            <Outlet/>
         </div>
     );
 };
