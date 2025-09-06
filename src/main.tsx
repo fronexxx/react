@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')!)
     .render(<BrowserRouter>
         <Routes>
             <Route path={'/'} element={<App/>}>
-                <Route path={''} element={<div>this is Home Page</div>}/>
+                <Route index={true} element={<div>this is Home Page</div>}/>
                 <Route path={'users'} element={<UsersComponent/>}/>
                 <Route path={'posts'} element={<PostsComponent/>}/>
                 <Route path={'comments'} element={<CommentsComponent/>}/>
