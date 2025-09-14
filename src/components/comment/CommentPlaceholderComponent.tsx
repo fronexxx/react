@@ -1,4 +1,4 @@
-import type {IComment} from "../../models/IComment.ts";
+import type {IComment} from "../../models/placeholder-models/IComment.ts";
 import type {FC} from "react";
 
 interface CommentPlaceholderComponentProps {

@@ -1,4 +1,4 @@
-import type {IUser} from "../../models/IUser.ts";
+import type {IUser} from "../../models/placeholder-models/IUser.ts";
 import type {FC} from "react";
 
 type UserPlaceholderComponentPropsType = {

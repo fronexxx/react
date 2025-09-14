@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import type {IUser} from "../../models/IUser.ts";
+import type {IUser} from "../../models/placeholder-models/IUser.ts";
 import UserPlaceholderComponent from "../user/UserPlaceholderComponent.tsx";
 import {services} from "../../services/service.api.ts";
 

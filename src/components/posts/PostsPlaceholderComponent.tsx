@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import type {IPost} from "../../models/IPost.ts";
+import type {IPost} from "../../models/placeholder-models/IPost.ts";
 import {services} from "../../services/service.api.ts";
 import PostPlaceholderComponent from "../post/PostPlaceholderComponent.tsx";
 

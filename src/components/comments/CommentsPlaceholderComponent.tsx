@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import type {IComment} from "../../models/IComment.ts";
+import type {IComment} from "../../models/placeholder-models/IComment.ts";
 import {services} from "../../services/service.api.ts";
 import CommentPlaceholderComponent from "../comment/CommentPlaceholderComponent.tsx";
 
