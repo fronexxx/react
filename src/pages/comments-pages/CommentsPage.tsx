@@ -1,9 +1,9 @@
-import CommentsMenu from "../../components/menu/CommentsMenu.tsx";
+import CommentsComponent from "../../components/comments/CommentsComponent.tsx";
 
 const CommentsPage = () => {
     return (
         <div>
-            <CommentsMenu/>
+            <CommentsComponent/>
         </div>
     );
 };
