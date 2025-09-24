@@ -1,9 +1,9 @@
-import UsersMenu from "../../components/menu/UsersMenu.tsx";
+import UsersComponent from "../../components/users/UsersComponent.tsx";
 
 const UsersPage = () => {
     return (
         <div>
-            <UsersMenu/>
+            <UsersComponent/>
         </div>
     );
 };

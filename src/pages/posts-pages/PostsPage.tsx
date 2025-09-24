@@ -1,9 +1,9 @@
-import PostsMenu from "../../components/menu/PostsMenu.tsx";
+import PostsComponent from "../../components/posts/PostsComponent.tsx";
 
 const PostsPage = () => {
     return (
         <div>
-            <PostsMenu/>
+            <PostsComponent/>
         </div>
     );
 };
