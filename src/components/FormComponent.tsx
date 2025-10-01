@@ -1,51 +1,59 @@
-import {type FormEvent, useState} from "react";
+import {useForm} from "react-hook-form";
 
 interface IFormProps {
     username: string;
     password: string;
+    age: number;
 }
+
 
 const FormComponent = () => {
 
-    const [formState, setFormState] = useState<IFormProps>({
-        username: 'foobar',
-        password: '1111'
+    const {
+        handleSubmit,
+        register,
+        formState: {errors, isValid},
+    } = useForm<IFormProps>({
+        mode: 'all'
     });
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const user = {
-            username: formState.username,
-            password: formState.password
-        };
-        console.log(user);
-
+    const customHandler = (formDataProps: IFormProps) => {
+        console.log(formDataProps);
     };
-
-    // const handleUsernameChange = (e: FormEvent<HTMLInputElement>) => {
-    //     const input = e.target as HTMLInputElement;
-    //     console.log(input.value);
-    //     setFormState({...formState, username: input.value});
-    // };
-    //
-    // const handlePasswordChange = (e: FormEvent<HTMLInputElement>) => {
-    //     const input = e.target as HTMLInputElement;
-    //     console.log(input.value);
-    //     setFormState({...formState, password: input.value});
-    // };
-
-    const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
-        const input = e.target as HTMLInputElement;
-        console.log(input.name);
-        setFormState({...formState, [input.name]: input.value});
-    };
-
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name={'username'} placeholder={'username'} value={formState.username} onChange={handleInputChange}/>
-                <input type="text" name={'password'} placeholder={'password'} value={formState.password} onChange={handleInputChange}/>
-                <button>send</button>
+            <form onSubmit={handleSubmit(customHandler)}>
+                <label>
+                    <input type="text" {...register('username', {
+                    required: {value: true, message: 'name is required'},
+                    // pattern: {
+                    //     value: /\w+/,
+                    //     message: 'wrong name',
+                    // },
+                    minLength: {value: 4, message: 'wrong name'}
+                })} placeholder={'username'}/>
+                    {errors.username && <div>{errors.username.message}</div>}
+                </label>
+
+                <label>
+                    <input type="text" {...register('password', {
+                    required: true,
+                    minLength: {value: 3, message: 'pass too short'},
+                    maxLength: {value: 6, message: 'pass too long'}
+                })} placeholder={'password'}/>
+                {errors.password && <div>{errors.password.message}</div>}
+                </label>
+
+                <label>
+                    <input type="number" {...register('age', {
+                    required: true,
+                    valueAsNumber: true,
+                    min: {value: 1, message: 'age too small'},
+                    max: {value: 117, message: 'age too big'}
+                })} placeholder={'age'}/>
+                    {errors.age && <div>{errors.age.message}</div>}
+                </label>
+                <button disabled={!isValid}>send</button>
             </form>
         </div>
     );
