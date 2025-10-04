@@ -1,16 +1,19 @@
 import './App.css'
-import MyComponent from "./components/MyComponent.tsx";
+import {useEffect} from "react";
+import {getAllUsers, saveUser} from "./services/user.service.ts";
 
 function App() {
+    useEffect(() => {
+        getAllUsers().then(value => console.log(value));
+
+        saveUser({id: 1, name: 'John', email: 'asd@gmail.com'})
+        .then(value => console.log(value));
+    }, []);
 
     return (
-        <>
-            <MyComponent text={'Hello 1'}/>
-            <MyComponent text={'Hello 2'}/>
-            <MyComponent text={'Hello 3'}/>
-            <MyComponent text={'Hello okten'}/>
-            {/*{MyComponent({text: 'Hello 2'})}*/}
-        </>
+        <div>
+
+        </div>
     );
 }
 
