@@ -6,8 +6,8 @@ import CarComponent from "../car-component/CarComponent.tsx";
 const CarsComponent = () => {
     const [cars, setCars] = useState<ICar[]>([]);
     useEffect(() => {
+        getCars().then(cars => setCars(cars));
     }, []);
-    getCars().then(cars => setCars(cars));
     return (
         <div>
             {
