@@ -13,9 +13,9 @@ interface ILoginData {
     expiresInMins: number;
 }
 
-export const login = ({username, password, expiresInMins}: ILoginData): Promise<IUserWithTokens> => {
-    const {data: {UserWithTokens}} = axiosInstance.post<IUserWithTokens>('/login', {username, password, expiresInMins});
+export const login = async ({username, password, expiresInMins}: ILoginData): Promise<IUserWithTokens> => {
+    const {data: UserWithTokens} = await axiosInstance.post<IUserWithTokens>('/login', {username, password, expiresInMins});
     console.log(UserWithTokens);
-    localStorage.setItem('user', UserWithTokens);
+    localStorage.setItem('user', UserWithTokens.accessToken);
     return UserWithTokens;
 }
