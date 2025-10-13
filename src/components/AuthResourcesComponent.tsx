@@ -7,7 +7,7 @@ const AuthResourcesComponent = () => {
     }, []);
     return (
         <div>
-            AuthResourcesComponent
+
         </div>
     );
 };
