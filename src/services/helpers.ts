@@ -3,5 +3,6 @@ export const retriveLocalStorage = <T>(key: string) => {
     if (!object) {
         return {} as T;
     }
-    return object as T;
+    const parse = JSON.parse(object);
+    return parse as T;
 }
