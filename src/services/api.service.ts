@@ -15,6 +15,8 @@ interface ILoginData {
     expiresInMins: number;
 }
 
+axiosInstance.interceptors.request.use()
+
 export const login = async ({username, password, expiresInMins}: ILoginData): Promise<IUserWithTokens> => {
     const {data: UserWithTokens} = await axiosInstance.post<IUserWithTokens>('/login', {username, password, expiresInMins});
     console.log(UserWithTokens);
