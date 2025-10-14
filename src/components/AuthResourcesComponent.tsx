@@ -1,10 +1,18 @@
 import {useEffect} from "react";
-import {getAuthProducts} from "../services/api.service.ts";
+import {getAuthProducts, refresh} from "../services/api.service.ts";
 
 const AuthResourcesComponent = () => {
     useEffect(() => {
-        getAuthProducts()
-            .then(value => console.log(value));
+        getAuthProducts().then((products) => {
+            console.log(products);
+        }).catch((reason) => {
+            console.log(reason);
+
+            refresh().then(() =>
+                getAuthProducts().then((products) => {
+                    console.log(products);
+                }));
+        })
     }, []);
     return (
         <div>
