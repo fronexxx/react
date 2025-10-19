@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {UserComponent} from "./UserComponent.tsx";
 
 const UsersComponent = () => {
     const [users, setUsers] = useState([]);
@@ -10,7 +11,7 @@ const UsersComponent = () => {
     console.log('test');
     return (
         <div>users component
-            <UsersComponent/>
+            <UserComponent/>
         </div>
     );
 };
