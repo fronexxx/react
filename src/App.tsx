@@ -1,16 +1,13 @@
 import './App.css'
-import MyComponent from "./components/MyComponent.tsx";
+import UsersComponent from "./components/UsersComponent.tsx";
+import {useFetch} from "./hooks/useFetch.tsx";
 
 function App() {
-
+    useFetch();
     return (
-        <>
-            <MyComponent text={'Hello 1'}/>
-            <MyComponent text={'Hello 2'}/>
-            <MyComponent text={'Hello 3'}/>
-            <MyComponent text={'Hello okten'}/>
-            {/*{MyComponent({text: 'Hello 2'})}*/}
-        </>
+        <div>
+            <UsersComponent/>
+        </div>
     );
 }
 
