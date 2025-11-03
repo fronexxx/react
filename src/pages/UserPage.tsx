@@ -7,15 +7,16 @@ import {userSliceActions} from "../redux/slices/userSlice/userSlice.ts";
 const UserPage = () => {
     const {id} = useParams();
 
-    const {userSlice: {user}} = useAppSelector(state => state);
+    const {user, loadState} = useAppSelector(({userSlice}) => userSlice);
     const dispatch = useAppDispatch();
     useEffect(() => {
-        if(id) dispatch(userSliceActions.loadUser(id))
+        if (id) dispatch(userSliceActions.loadUser(id))
     }, [id]);
 
     return (
 
         <div>
+            {!loadState && <div>Loading...</div>}
             {user && <div>{user.id} {user.name}</div>}
         </div>
     );

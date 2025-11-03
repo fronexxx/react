@@ -1,12 +1,13 @@
 import type {IUser} from "../../../models/IUser.ts";
-import {createAsyncThunk, createSlice, type PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isFulfilled, isRejected, type PayloadAction} from "@reduxjs/toolkit";
 
 type UsersSliceType = {
     users: IUser[];
     user: IUser | null;
+    loadState: boolean;
 }
 
-const initialState: UsersSliceType = {users: [], user: null};
+const initialState: UsersSliceType = {users: [], user: null, loadState: false};
 
 const loadUsers = createAsyncThunk(
     'userSlice/loadUsers',
@@ -15,6 +16,7 @@ const loadUsers = createAsyncThunk(
         try {
             const users = await fetch('https://jsonplaceholder.typicode.com/users')
                 .then((response) => response.json());
+            // thunkAPI.dispatch(userSliceActions.changeLoadState(true));
 
             return thunkAPI.fulfillWithValue(users);
             // throw new Error();
@@ -33,6 +35,7 @@ const loadUser = createAsyncThunk(
         try {
             const user = await fetch('https://jsonplaceholder.typicode.com/users/' + id)
                 .then((response) => response.json());
+            // thunkAPI.dispatch(userSliceActions.changeLoadState(true));
 
             return thunkAPI.fulfillWithValue(user);
             // throw new Error();
@@ -47,7 +50,11 @@ const loadUser = createAsyncThunk(
 export const userSlice = createSlice({
     name: "userSlice",
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        changeLoadState: (state, action: PayloadAction<boolean>) => {
+            state.loadState = action.payload;
+        },
+    },
     extraReducers: builder => {
         builder
             .addCase(loadUsers.fulfilled, (state, action: PayloadAction<IUser[]>) => {
@@ -59,7 +66,13 @@ export const userSlice = createSlice({
             })
             .addCase(loadUser.fulfilled, (state, action: PayloadAction<IUser>) => {
                 state.user = action.payload
-            });
+            })
+            .addMatcher(isFulfilled(loadUser, loadUsers), (state) => {
+                state.loadState = true;
+            })
+            .addMatcher(isRejected(loadUsers, loadUser), (state) => {
+                console.log(state);
+            })
     }
 });
 
