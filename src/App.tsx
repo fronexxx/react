@@ -1,16 +1,23 @@
 import './App.css'
-import MyComponent from "./components/MyComponent.tsx";
+import {useQuery} from "@tanstack/react-query";
 
 function App() {
 
+    const {data: users, isFetching, status} = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            return await fetch('https://jsonplaceholder.typicode.com/users')
+                .then((response) => response.json())
+        },
+    });
+    if (isFetching) return <div>Loading...</div>
+    console.log(users, status)
     return (
-        <>
-            <MyComponent text={'Hello 1'}/>
-            <MyComponent text={'Hello 2'}/>
-            <MyComponent text={'Hello 3'}/>
-            <MyComponent text={'Hello okten'}/>
-            {/*{MyComponent({text: 'Hello 2'})}*/}
-        </>
+        <div>
+            {
+                users?.map(user => <div key={user.id}>{user.id} --- {user.name}</div>)
+            }
+        </div>
     );
 }
 
