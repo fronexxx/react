@@ -1,4 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
+import {useApi} from "../../../use-api/use-api.ts";
 
 interface IUser {
     id: number;
@@ -6,12 +7,12 @@ interface IUser {
 }
 
 export const useUsers = () => {
+    const {get} = useApi<IUser[]>();
     return useQuery({
 
         queryKey: ['users'],
         queryFn: async (): Promise<IUser[]> => {
-            return await fetch('https://jsonplaceholder.typicode.com/users')
-                .then((response) => response.json())
+            return get({route: '/users'})
         },
     });
 };
