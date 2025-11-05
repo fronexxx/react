@@ -1,15 +1,10 @@
 import './App.css'
-import {useQuery} from "@tanstack/react-query";
+import {useUsers} from "./api/query/users/useUsers.ts";
+
 
 function App() {
+const { data: users, isFetching, status } = useUsers();
 
-    const {data: users, isFetching, status} = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => {
-            return await fetch('https://jsonplaceholder.typicode.com/users')
-                .then((response) => response.json())
-        },
-    });
     if (isFetching) return <div>Loading...</div>
     console.log(users, status)
     return (
